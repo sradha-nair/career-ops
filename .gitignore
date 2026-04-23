@@ -3,6 +3,8 @@ cv.md
 data/applications.md
 data/pipeline.md
 data/scan-history.tsv
+data/scan.log
+data/auto-scan.pid
 reports/*.md
 !reports/.gitkeep
 output/*
