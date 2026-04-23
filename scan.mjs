@@ -31,6 +31,17 @@ mkdirSync('data', { recursive: true });
 
 const CONCURRENCY = 10;
 const FETCH_TIMEOUT_MS = 10_000;
+const MAX_AGE_DAYS = 30; // skip jobs older than this
+
+function isFresh(dateValue) {
+  if (!dateValue) return true; // no date = assume fresh
+  const posted = typeof dateValue === 'number'
+    ? new Date(dateValue) // Lever: Unix ms
+    : new Date(dateValue); // Greenhouse/Ashby: ISO string
+  if (isNaN(posted.getTime())) return true;
+  const ageDays = (Date.now() - posted.getTime()) / (1000 * 60 * 60 * 24);
+  return ageDays <= MAX_AGE_DAYS;
+}
 
 // ── API detection ───────────────────────────────────────────────────
 
@@ -76,32 +87,38 @@ function detectApi(company) {
 
 function parseGreenhouse(json, companyName) {
   const jobs = json.jobs || [];
-  return jobs.map(j => ({
-    title: j.title || '',
-    url: j.absolute_url || '',
-    company: companyName,
-    location: j.location?.name || '',
-  }));
+  return jobs
+    .filter(j => isFresh(j.updated_at || j.first_published || j.created_at))
+    .map(j => ({
+      title: j.title || '',
+      url: j.absolute_url || '',
+      company: companyName,
+      location: j.location?.name || '',
+    }));
 }
 
 function parseAshby(json, companyName) {
   const jobs = json.jobs || [];
-  return jobs.map(j => ({
-    title: j.title || '',
-    url: j.jobUrl || '',
-    company: companyName,
-    location: j.location || '',
-  }));
+  return jobs
+    .filter(j => isFresh(j.publishedDate || j.updatedAt || j.createdAt))
+    .map(j => ({
+      title: j.title || '',
+      url: j.jobUrl || '',
+      company: companyName,
+      location: j.location || '',
+    }));
 }
 
 function parseLever(json, companyName) {
   if (!Array.isArray(json)) return [];
-  return json.map(j => ({
-    title: j.text || '',
-    url: j.hostedUrl || '',
-    company: companyName,
-    location: j.categories?.location || '',
-  }));
+  return json
+    .filter(j => isFresh(j.createdAt))
+    .map(j => ({
+      title: j.text || '',
+      url: j.hostedUrl || '',
+      company: companyName,
+      location: j.categories?.location || '',
+    }));
 }
 
 const PARSERS = { greenhouse: parseGreenhouse, ashby: parseAshby, lever: parseLever };
