@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sradha N — CV</title>
+<style>
+  @font-face {
+    font-family: 'Space Grotesk';
+    src: url('./fonts/space-grotesk-latin.woff2') format('woff2');
+    font-weight: 300 700;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: 'Space Grotesk';
+    src: url('./fonts/space-grotesk-latin-ext.woff2') format('woff2');
+    font-weight: 300 700;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  @font-face {
+    font-family: 'DM Sans';
+    src: url('./fonts/dm-sans-latin.woff2') format('woff2');
+    font-weight: 100 1000;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: 'DM Sans';
+    src: url('./fonts/dm-sans-latin-ext.woff2') format('woff2');
+    font-weight: 100 1000;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #1a1a2e;
+    background: #ffffff;
+    padding: 0;
+    margin: 0;
+  }
+  .page { width: 100%; max-width: 780px; margin: 0 auto; padding: 2px 0; }
+
+  .header { margin-bottom: 20px; }
+  .header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1a2e;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+    line-height: 1.1;
+  }
+  .header-gradient {
+    height: 2px;
+    background: linear-gradient(to right, hsl(187, 74%, 32%), hsl(270, 70%, 45%));
+    border-radius: 1px;
+    margin-bottom: 10px;
+  }
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10.5px;
+    line-height: 1.4;
+    color: #555;
+  }
+  .contact-row a { color: #555; text-decoration: none; }
+  .contact-row .separator { color: #ccc; }
+
+  .section { margin-bottom: 18px; }
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: hsl(187, 74%, 32%);
+    border-bottom: 1.5px solid #e2e2e2;
+    padding-bottom: 4px;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  .summary-text { font-size: 11px; line-height: 1.7; color: #2f2f2f; }
+  a { white-space: nowrap; }
+
+  .competencies-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .competency-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    color: hsl(187, 74%, 28%);
+    background: hsl(187, 40%, 95%);
+    padding: 4px 10px;
+    border-radius: 3px;
+    border: 1px solid hsl(187, 40%, 88%);
+  }
+
+  .job { margin-bottom: 14px; }
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+  .job-company {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: hsl(270, 70%, 45%);
+  }
+  .job-period { font-size: 10.5px; color: #777; white-space: nowrap; }
+  .job-role { font-size: 11px; font-weight: 600; color: #333; margin-bottom: 6px; }
+  .job-location { font-size: 10px; color: #888; }
+  .job ul { padding-left: 18px; margin-top: 6px; }
+  .job li { font-size: 10.5px; line-height: 1.6; color: #333; margin-bottom: 4px; }
+  .job li strong { font-weight: 600; }
+
+  .project { margin-bottom: 12px; }
+  .project-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: hsl(270, 70%, 45%);
+  }
+  .project-badge {
+    font-size: 9px; font-weight: 500;
+    color: hsl(187, 74%, 32%);
+    background: hsl(187, 40%, 95%);
+    padding: 1px 6px; border-radius: 2px; margin-left: 6px;
+  }
+  .project-desc { font-size: 10.5px; color: #444; margin-top: 3px; line-height: 1.55; }
+  .project-tech { font-size: 9.5px; color: #888; margin-top: 3px; }
+
+  .edu-item { margin-bottom: 8px; }
+  .edu-header { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .edu-title { font-weight: 600; font-size: 11px; color: #333; }
+  .edu-org { color: hsl(270, 70%, 45%); font-weight: 500; }
+  .edu-year { font-size: 10px; color: #777; white-space: nowrap; }
+  .edu-desc { font-size: 10px; color: #666; margin-top: 2px; line-height: 1.5; }
+
+  .cert-item {
+    display: flex; justify-content: space-between;
+    align-items: baseline; gap: 12px; margin-bottom: 6px;
+  }
+  .cert-title { font-size: 10.5px; font-weight: 500; color: #333; }
+  .cert-org { color: hsl(270, 70%, 45%); }
+  .cert-year { font-size: 10px; color: #777; white-space: nowrap; }
+
+  .skills-table { width: 100%; border-collapse: collapse; }
+  .skills-table td { font-size: 10.5px; color: #444; padding: 2px 8px 2px 0; vertical-align: top; }
+  .skills-table td:first-child { font-weight: 600; color: #333; white-space: nowrap; width: 160px; }
+
+  .pub-item { margin-bottom: 7px; }
+  .pub-title { font-size: 10.5px; font-weight: 600; color: #333; }
+  .pub-detail { font-size: 10px; color: #666; margin-top: 1px; line-height: 1.5; }
+
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { padding: 0; }
+  }
+  .avoid-break, .job, .project, .edu-item, .cert-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header avoid-break">
+    <h1>Sradha N</h1>
+    <div class="header-gradient"></div>
+    <div class="contact-row">
+      <span>+91 9400060273</span>
+      <span class="separator">|</span>
+      <span>sradhanair125@gmail.com</span>
+      <span class="separator">|</span>
+      <a href="https://linkedin.com/in/sradha-nair">linkedin.com/in/sradha-nair</a>
+      <span class="separator">|</span>
+      <a href="https://github.com/sradha-nair">github.com/sradha-nair</a>
+      <span class="separator">|</span>
+      <span>Sharjah, United Arab Emirates | UAE resident — available immediately</span>
+    </div>
+  </div>
+
+  <!-- PROFESSIONAL SUMMARY -->
+  <div class="section avoid-break">
+    <div class="section-title">Professional Summary</div>
+    <div class="summary-text">
+      Electronics and Computer Engineering graduate with hands-on experience building AI/ML pipelines, automating data workflows, and communicating insights to senior stakeholders. Holds an Investment Banking Operations certification with domain knowledge in financial markets, AML/KYC, and trade lifecycle. Published researcher (IEEE Access, Taylor &amp; Francis). UAE resident, available immediately. Looking to channel technical depth, analytical rigour, and cross-functional communication into a product management career.
+    </div>
+  </div>
+
+  <!-- CORE COMPETENCIES -->
+  <div class="section">
+    <div class="section-title">Core Competencies</div>
+    <div class="competencies-grid">
+      <span class="competency-tag">Product Roadmapping</span>
+      <span class="competency-tag">PRD Writing</span>
+      <span class="competency-tag">Agile / Scrum</span>
+      <span class="competency-tag">Data-Driven Decision Making</span>
+      <span class="competency-tag">Stakeholder Management</span>
+      <span class="competency-tag">Market &amp; Competitive Analysis</span>
+      <span class="competency-tag">ML / AI Pipelines</span>
+      <span class="competency-tag">Python &amp; SQL</span>
+      <span class="competency-tag">Power BI</span>
+      <span class="competency-tag">AML / KYC</span>
+      <span class="competency-tag">Trade Life Cycle</span>
+      <span class="competency-tag">Cross-functional Collaboration</span>
+    </div>
+  </div>
+
+  <!-- WORK EXPERIENCE -->
+  <div class="section">
+    <div class="section-title">Experience</div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Regal Rexnord Corporation</span>
+        <span class="job-period">May 2024 – Apr 2025</span>
+      </div>
+      <div class="job-role">Data Scientist Trainee <span class="job-location">· Hyderabad, India</span></div>
+      <ul>
+        <li>Built MLOps pipelines for sales forecasting across multiple business units using an ensemble-weighted approach combining several models — delivered end-to-end from data ingestion to production deployment.</li>
+        <li>Designed an automated pipeline in Python integrating the OpenAI API to extract insights from sales data, generate visualisations, and produce executive-level PowerPoint reports — eliminating manual reporting effort for senior stakeholders.</li>
+        <li>Developed a computer vision model to detect and classify PPE for factory safety compliance; led requirements gathering and cross-team delivery across engineering and operations.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Helyxon Healthcare Solutions</span>
+        <span class="job-period">Jun 2023 – Aug 2023</span>
+      </div>
+      <div class="job-role">Data Analytics Intern <span class="job-location">· Chennai, India</span></div>
+      <ul>
+        <li>Contributed to an OCR pipeline for classifying medical insurance forms using pytesseract.</li>
+        <li>Built a Power BI dashboard visualising neonatal fatality metrics across Tamil Nadu districts; presented findings to executive reviewers, translating raw data into actionable recommendations.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="section">
+    <div class="section-title">Projects</div>
+
+    <div class="project">
+      <div>
+        <span class="project-title">Smoothest Path Algorithm for Train Tracks</span>
+        <span class="project-badge">Python · ArcGIS</span>
+      </div>
+      <div class="project-desc">Terrain-aware path optimisation model using a modified Dijkstra's algorithm with DEM inputs — improved route realism and smoothness for railway planning.</div>
+    </div>
+
+    <div class="project">
+      <div>
+        <span class="project-title">Diabetic Retinopathy Detection</span>
+        <span class="project-badge">Java · Android Studio · TensorFlow</span>
+      </div>
+      <div class="project-desc">CNN-based classifier for five stages of diabetic retinopathy using transfer learning on fundus images. Includes preprocessing and augmentation pipelines; delivered as a working Android app.</div>
+    </div>
+
+    <div class="project">
+      <div>
+        <span class="project-title">Deep Learning Based CAPTCHA Solver</span>
+        <span class="project-badge">Python · LSTM</span>
+      </div>
+      <div class="project-desc">Research project exploring LSTM-based sequence models to demonstrate potential CAPTCHA vulnerabilities. Documented limitations and ethical considerations (defensive/research use only).</div>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section avoid-break">
+    <div class="section-title">Education</div>
+
+    <div class="edu-item">
+      <div class="edu-header">
+        <span class="edu-title">B.Tech, Electronics and Computer Engineering — <span class="edu-org">Vellore Institute of Technology</span></span>
+        <span class="edu-year">2020 – 2024</span>
+      </div>
+      <div class="edu-desc">Chennai, Tamil Nadu</div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-header">
+        <span class="edu-title">Indian School Certificate — <span class="edu-org">Holy Angels ISC School</span></span>
+        <span class="edu-year">2018 – 2020</span>
+      </div>
+      <div class="edu-desc">Thiruvananthapuram, Kerala</div>
+    </div>
+  </div>
+
+  <!-- RESEARCH & PUBLICATIONS -->
+  <div class="section avoid-break">
+    <div class="section-title">Research &amp; Publications</div>
+
+    <div class="pub-item">
+      <div class="pub-title">Estimation of Essential Battery State Parameters for BMS in Electric Vehicles</div>
+      <div class="pub-detail">IEEE Access, Aug 2025 — Time-series battery state estimation using LSTM and Extended Kalman Filter.</div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-title">Design and Development of 2D Space Shooter &amp; Arcade Game Using Unity</div>
+      <div class="pub-detail">Taylor &amp; Francis — Machine Learning Hybridization and Optimization for Intelligent Applications, Oct 2024.</div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATIONS -->
+  <div class="section avoid-break">
+    <div class="section-title">Certifications</div>
+    <div class="cert-item">
+      <span class="cert-title">Certified Investment Banking Operations Professional (CIBOP) — <span class="cert-org">Imarticus Learning</span></span>
+      <span class="cert-year">May 2025</span>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section avoid-break">
+    <div class="section-title">Skills</div>
+    <table class="skills-table">
+      <tr>
+        <td>Programming &amp; Data</td>
+        <td>Python, Java, SQL, HTML/CSS</td>
+      </tr>
+      <tr>
+        <td>Data &amp; BI Tools</td>
+        <td>MySQL, Databricks, Snowflake, Microsoft Excel, Power BI, ArcGIS</td>
+      </tr>
+      <tr>
+        <td>ML / AI Libraries</td>
+        <td>NumPy, Pandas, TensorFlow, Keras, YOLO, Plotly, Seaborn, BeautifulSoup4, Dash</td>
+      </tr>
+      <tr>
+        <td>Product &amp; Analytics</td>
+        <td>Product Roadmapping, PRD Writing, User Story Mapping, A/B Testing, KPI Definition, Market &amp; Competitive Analysis, Stakeholder Management</td>
+      </tr>
+      <tr>
+        <td>Methodologies</td>
+        <td>Agile, Scrum, Cross-functional Collaboration, Requirements Gathering, Root Cause Analysis</td>
+      </tr>
+      <tr>
+        <td>Finance &amp; Operations</td>
+        <td>Financial Markets, Financial Instruments, AML/KYC, Trade Life Cycle, Corporate Actions, Collateral Management, Transaction Monitoring</td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+</body>
+</html>
